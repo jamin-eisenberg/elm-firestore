@@ -49,6 +49,8 @@ encode (Encoder fields) =
 -- Constructors
 
 
+{-| A builder for Encoders, that will eventually become an Encoder via build
+-}
 type Builder
     = Builder (Dict.Dict String ValidatedField)
 
@@ -76,6 +78,8 @@ new =
     Builder Dict.empty
 
 
+{-| Adds a field to the encoder Builder
+-}
 field : String -> Field b -> Builder -> Builder
 field name field_ (Builder encoders) =
     Builder <| Dict.insert name (ValidatedField (unfield field_)) encoders
